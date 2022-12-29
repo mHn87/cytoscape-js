@@ -1,0 +1,86 @@
+@import './variables';
+
+// font-face
+@font-face {
+  font-family: itemTitleFont;
+  src: url('../font/Mark Simonson - Proxima Nova Extra Condensed Semibold.otf');
+}
+
+@font-face {
+  font-family: itemFont;
+  src: url('../font/bahnschrift.ttf');
+}
+
+
+.body{
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.container{
+  //width: 97vh;
+  height: 96.3vh;
+  display: flex;
+  justify-content: start;
+  //align-items: center;
+  margin: 16px;
+  position: relative;
+  gap: 16px;
+}
+
+.graphContainer {
+  flex-grow: 1;
+  height: 100%;
+  background-color: $pane-color;
+  position: relative;
+  border-radius: $border-radius-container;
+
+}
+
+.sidebar {
+  width: 40vh;
+  background-color: $sidebar-background-color;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+  //z-index: 5;
+  //padding: 8px;
+  //margin: 16px;
+  //border-radius: 8px;
+  border-radius: $border-radius-container;
+  overflow-y: auto;
+}
+
+.editorContainer {
+  height: auto;
+  background-color: $editor-background-color;
+  padding: 8px;
+  margin: 16px 16px 0 16px;
+  border-radius: $border-radius-container;
+}
+
+.editorItem{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 8px;
+  font-family: itemFont;
+  font-size: 18px;
+  gap: 8px;
+}
+
+.editorItemTitle{
+  font-family: itemTitleFont;
+  font-size: 35px;
+}
+
+.editorItemButtonGroup{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
