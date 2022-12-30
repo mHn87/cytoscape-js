@@ -14,10 +14,8 @@ const EdgeProperties = () => {
                     Edge
                 </span>
 
-                <span>background-color: #587ad5</span>
-                <span>min-zoom: 25</span>
-                <span>max-zoom: 78</span>
-                <span>data: 2</span>
+                <span>color: #587ad5</span>
+                <span>size</span>
 
             </div>
         </div>

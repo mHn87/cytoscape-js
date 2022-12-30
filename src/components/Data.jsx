@@ -28,18 +28,27 @@ const Data = () => {
             <div
                 className={styles.editorItem}
             >
-                <span
-                    className={styles.editorItemTitle}
+                <div
+                    style={{
+                        display: "flex",
+                        justifyContent: "space-between"
+                    }}
                 >
-                    Data  <span style={{fontSize: "18px"}}>{data}</span>
+                    <span
+                        className={styles.editorItemTitle}
+                    >
+                    Data
                 </span>
+
+                    <span>{data}</span>
+                </div>
 
                 <Slider
                     value={data}
                     min={2}
                     max={5000}
                     aria-label="Default"
-                    onChange={(e, c) => handleChangeData(e,c)}
+                    onChange={(e, c) => handleChangeData(e, c)}
                     valueLabelDisplay="auto"
                 />
 

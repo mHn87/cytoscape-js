@@ -29,8 +29,6 @@ const PaneProperties = ({cy}) => {
         dispatch(setMinZoom(count))
     }
 
-
-
     const handleChangeMaxZoom = (e,count) => {
         cy.current.maxZoom(count)
         dispatch(setMaxZoom(count))
@@ -71,7 +69,7 @@ const PaneProperties = ({cy}) => {
                 <div
                     className={styles.inlineFlex}
                 >
-                    <span style={{}}>min-zoom:</span>
+                    <span style={{}}>min-zoom</span>
                     <Slider
                         value={minZoom}
                         min={-100}
@@ -88,7 +86,7 @@ const PaneProperties = ({cy}) => {
                 <div
                     className={styles.inlineFlex}
                 >
-                    <span>max-zoom:</span>
+                    <span>max-zoom</span>
                     <Slider
                         value={maxZoom}
                         min={0}

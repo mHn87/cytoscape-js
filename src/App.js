@@ -16,12 +16,14 @@ const App = () => {
         data
     } = useSelector(state => state.pane)
 
+    const {
+        nodeColor,
+        nodeSize
+    } = useSelector(state => state.node)
+
 
     let cy = useRef(null)
 
-    useEffect(() => {
-        console.log(backgroundColor)
-    } , [backgroundColor])
 
 
     useEffect(() => {
@@ -58,7 +60,9 @@ const App = () => {
                 {
                     selector: 'node',
                     style: {
-                        'background-color': '#666',
+                        'background-color': `${nodeColor}`,
+                        'width' : {nodeSize},
+                        'height': {nodeSize},
                         'label': 'data(id)'
                     }
                 },
@@ -102,7 +106,7 @@ const App = () => {
                 <Layout/>
                 <Data/>
                 <PaneProperties cy={cy}/>
-                <NodeProperties/>
+                <NodeProperties cy={cy}/>
                 <EdgeProperties/>
                 <Export cy={cy}/>
 

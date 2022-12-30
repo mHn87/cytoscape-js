@@ -1,7 +1,43 @@
 import styles from "../style/App.module.scss";
-import {Button} from "@mui/material";
+import {useDispatch, useSelector} from "react-redux";
+import {setBackgroundColor, setMinZoom} from "../store/slices/paneSlice";
+import {Slider} from "@mui/material";
+import {setNodeColor, setNodeSize} from "../store/slices/nodeSlice";
 
-const NodeProperties = () => {
+const NodeProperties = ({cy}) => {
+
+    const dispatch = useDispatch()
+
+    const {
+        nodeColor,
+        nodeSize
+    } = useSelector(state => state.node)
+
+
+    const handleChangeNodeBackgroundColor = (e) => {
+        cy.current.style( `
+            node { 
+                background-color: ${e.target.value};
+                width : ${nodeSize};
+                height: ${nodeSize};
+                label: data(id);
+            }
+        `);
+
+        dispatch(setNodeColor(e.target.value))
+    }
+
+    const handleChangeNodeSize = (e, count) => {
+        cy.current.style( `
+            node { 
+                background-color: ${nodeColor};
+                width : ${count};
+                height: ${count};
+                label: data(id);
+            }
+        `);
+        dispatch(setNodeSize(count))
+    }
 
     return (
         <div
@@ -16,12 +52,35 @@ const NodeProperties = () => {
                     Node
                 </span>
 
+                <div
+                    className={styles.inlineFlex}
+                >
+                    <span>background-color</span>
+                    <input
+                        type={'color'}
+                        value={nodeColor}
+                        onChange={(e) => handleChangeNodeBackgroundColor(e)}
+                    />
 
+                </div>
 
-                <span>background-color: #587ad5</span>
-                <span>min-zoom: 25</span>
-                <span>max-zoom: 78</span>
-                <span>data: 2</span>
+                <div
+                    className={styles.inlineFlex}
+                >
+                    <span style={{}}>size</span>
+                    <Slider
+                        value={nodeSize}
+                        min={10}
+                        max={50}
+                        aria-label="Default"
+                        onChange={(e, c) => handleChangeNodeSize(e, c)}
+                        valueLabelDisplay="auto"
+                        sx={{
+                            width: "200px"
+                        }}
+                    />
+                </div>
+
 
             </div>
         </div>
