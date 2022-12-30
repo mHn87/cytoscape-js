@@ -1,7 +1,6 @@
 import styles from "../style/App.module.scss";
 import {useDispatch, useSelector} from "react-redux";
 import {Button, Slider} from "@mui/material";
-import {useEffect, useState} from "react";
 import {setBackgroundColor, setMaxZoom, setMinZoom} from "../store/slices/paneSlice";
 
 const PaneProperties = ({cy}) => {
@@ -78,7 +77,7 @@ const PaneProperties = ({cy}) => {
                         onChange={(e, c) => handleChangeMinZoom(e,c)}
                         valueLabelDisplay="auto"
                         sx={{
-                            width:"200px"
+                            width:"170px"
                         }}
                     />
                 </div>
@@ -95,7 +94,7 @@ const PaneProperties = ({cy}) => {
                         onChange={(e, c) => handleChangeMaxZoom(e,c)}
                         valueLabelDisplay="auto"
                         sx={{
-                            width:"200px"
+                            width:"170px"
                         }}
                     />
                 </div>

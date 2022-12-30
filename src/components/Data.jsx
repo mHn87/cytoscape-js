@@ -8,9 +8,6 @@ const Data = () => {
 
 
     const {
-        backgroundColor,
-        minZoom,
-        maxZoom,
         data
     } = useSelector(state => state.pane)
 

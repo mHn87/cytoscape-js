@@ -2,14 +2,20 @@ import {useState} from "react";
 import styles from "../style/App.module.scss";
 import Select, {SelectChangeEvent} from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
+import {useDispatch, useSelector} from "react-redux";
+import {changeLayout, setData} from "../store/slices/paneSlice";
 
 const Layout = () => {
 
+    const {
+        layout
+    } = useSelector(state => state.pane)
 
-    const [layout, setLayout] = useState('random');
+    const dispatch = useDispatch()
 
-    const handleChange = (e) => {
-        setLayout(e.target.value);
+
+    const handleChangeLayout = (e) => {
+        dispatch(changeLayout(e.target.value))
     };
 
     return (
@@ -25,17 +31,17 @@ const Layout = () => {
                     Layout
                 </span>
 
-                {/*<p>The type of graph data display to the user</p>*/}
 
                 <Select
                     size={'small'}
                     fullWidth
                     value={layout}
-                    onChange={handleChange}
+                    onChange={handleChangeLayout}
                 >
                     <MenuItem value={'random'}>random</MenuItem>
                     <MenuItem value={'dagre'}>dagre</MenuItem>
                     <MenuItem value={'grid'}>grid</MenuItem>
+                    <MenuItem value={'concentric'}>concentric</MenuItem>
                 </Select>
 
 

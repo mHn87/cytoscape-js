@@ -1,5 +1,7 @@
 import {useEffect, useRef} from "react";
+import {useSelector} from "react-redux";
 import cytoscape from 'cytoscape'
+import dagre from 'cytoscape-dagre';
 import styles from './style/App.module.scss'
 import PaneProperties from "./components/PaneProperties";
 import Export from "./components/Export";
@@ -7,19 +9,32 @@ import Layout from "./components/Layout";
 import NodeProperties from "./components/NodeProperties";
 import EdgeProperties from "./components/EdgeProperties";
 import Data from "./components/Data";
-import {useSelector} from "react-redux";
+
+cytoscape.use(dagre)
+
+
+
+
+
+
 
 const App = () => {
 
     const {
         backgroundColor,
-        data
+        data,
+        layout
     } = useSelector(state => state.pane)
 
     const {
         nodeColor,
         nodeSize
     } = useSelector(state => state.node)
+
+    const {
+        edgeColor,
+        edgeWidth
+    } = useSelector(state => state.edge)
 
 
     let cy = useRef(null)
@@ -50,6 +65,9 @@ const App = () => {
             }
         }
 
+
+
+
         let test = cytoscape({
 
             container: document.getElementById('cy'), // container to render in
@@ -60,9 +78,9 @@ const App = () => {
                 {
                     selector: 'node',
                     style: {
-                        'background-color': `${nodeColor}`,
-                        'width' : {nodeSize},
-                        'height': {nodeSize},
+                        'background-color': nodeColor,
+                        'width' : nodeSize,
+                        'height': nodeSize,
                         'label': 'data(id)'
                     }
                 },
@@ -70,9 +88,9 @@ const App = () => {
                 {
                     selector: 'edge',
                     style: {
-                        'width': 3,
-                        'line-color': '#ccc',
-                        'target-arrow-color': '#ccc',
+                        'width': edgeWidth,
+                        'line-color': edgeColor,
+                        'target-arrow-color': edgeColor,
                         'target-arrow-shape': 'triangle',
                         'curve-style': 'bezier'
                     }
@@ -80,7 +98,7 @@ const App = () => {
             ],
 
             layout: {
-                name: 'random',
+                name: layout,
                 rows: 1
             }
 
@@ -93,7 +111,7 @@ const App = () => {
             cy.current = null
         }
 
-    }, [data]);
+    }, [data, layout]);
 
 
     return (
@@ -105,10 +123,10 @@ const App = () => {
             >
                 <Layout/>
                 <Data/>
-                <PaneProperties cy={cy}/>
-                <NodeProperties cy={cy}/>
-                <EdgeProperties/>
-                <Export cy={cy}/>
+                <PaneProperties cy={cy} />
+                <NodeProperties cy={cy} />
+                <EdgeProperties cy={cy} />
+                <Export cy={cy} />
 
             </div>
 

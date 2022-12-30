@@ -5,7 +5,8 @@ const initialState = {
     backgroundColor: "#dedede",
     minZoom: -100,
     maxZoom: 10,
-    data: 2
+    data: 2,
+    layout: "random"
 }
 
 
@@ -24,6 +25,9 @@ const paneSlice = createSlice({
         },
         setData: (state, action) => {
             state.data = action.payload
+        },
+        changeLayout: (state, action) => {
+            state.layout = action.payload
         }
     }
 })
@@ -34,7 +38,8 @@ export const {
     setBackgroundColor,
     setMinZoom,
     setMaxZoom,
-    setData
+    setData,
+    changeLayout
 } = paneSlice.actions;
 
 export default paneSlice.reducer;

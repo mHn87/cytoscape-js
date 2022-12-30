@@ -13,14 +13,27 @@ const NodeProperties = ({cy}) => {
         nodeSize
     } = useSelector(state => state.node)
 
+    const {
+        edgeColor,
+        edgeWidth
+    } = useSelector(state => state.edge)
+
 
     const handleChangeNodeBackgroundColor = (e) => {
-        cy.current.style( `
+        cy.current.style( `  
             node { 
                 background-color: ${e.target.value};
                 width : ${nodeSize};
                 height: ${nodeSize};
                 label: data(id);
+            }
+            
+            edge {
+                width: ${edgeWidth};
+                line-color: ${edgeColor};
+                target-arrow-color: ${edgeColor};
+                target-arrow-shape: triangle;
+                curve-style: bezier;
             }
         `);
 
@@ -34,6 +47,14 @@ const NodeProperties = ({cy}) => {
                 width : ${count};
                 height: ${count};
                 label: data(id);
+            }
+            
+            edge {
+                width: ${edgeWidth};
+                line-color: ${edgeColor};
+                target-arrow-color: ${edgeColor};
+                target-arrow-shape: triangle;
+                curve-style: bezier;
             }
         `);
         dispatch(setNodeSize(count))
@@ -67,7 +88,7 @@ const NodeProperties = ({cy}) => {
                 <div
                     className={styles.inlineFlex}
                 >
-                    <span style={{}}>size</span>
+                    <span>size</span>
                     <Slider
                         value={nodeSize}
                         min={10}

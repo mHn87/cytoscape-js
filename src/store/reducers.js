@@ -2,6 +2,8 @@ import {combineReducers} from "@reduxjs/toolkit";
 import _ from "lodash" ;
 import pane from "./slices/paneSlice";
 import node from "./slices/nodeSlice";
+import edge from "./slices/edgeSlice";
+
 
 
 
@@ -10,7 +12,8 @@ const createReducer = (asyncReducers) => (state, action) => {
         {},
         {
             pane,
-            node
+            node,
+            edge
         },
         asyncReducers
     )

@@ -2,7 +2,7 @@ import {createSlice} from "@reduxjs/toolkit";
 
 
 const initialState = {
-    nodeColor: "#666",
+    nodeColor: "#666666",
     nodeSize: 20
 }
 
