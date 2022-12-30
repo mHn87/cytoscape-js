@@ -1,4 +1,4 @@
-import {useEffect} from "react";
+import {useEffect, useRef} from "react";
 import cytoscape from 'cytoscape'
 import styles from './style/App.module.scss'
 import PaneProperties from "./components/PaneProperties";
@@ -6,25 +6,53 @@ import Export from "./components/Export";
 import Layout from "./components/Layout";
 import NodeProperties from "./components/NodeProperties";
 import EdgeProperties from "./components/EdgeProperties";
+import Data from "./components/Data";
+import {useSelector} from "react-redux";
 
 const App = () => {
 
+    const {
+        backgroundColor,
+        data
+    } = useSelector(state => state.pane)
+
+
+    let cy = useRef(null)
+
     useEffect(() => {
-        cytoscape({
+        console.log(backgroundColor)
+    } , [backgroundColor])
+
+
+    useEffect(() => {
+
+
+        const elements = []
+
+        for (let i = 0; i < data; i++) {
+            if (i < 1) {
+                elements.push(
+                    {
+                        data: {id: `${i}`}
+                    }
+                )
+            } else {
+                elements.push(
+                    {
+                        data: {id: `${i}`}
+                    },
+                    {
+                        data: {id: `${i - 1}${i}`, source: `${i - 1}`, target: `${i}`}
+                    }
+                )
+            }
+        }
+
+        let test = cytoscape({
 
             container: document.getElementById('cy'), // container to render in
 
-            elements: [ // list of graph elements to start with
-                { // node a
-                    data: {id: 'a'}
-                },
-                { // node b
-                    data: {id: 'b'}
-                },
-                { // edge ab
-                    data: {id: 'ab', source: 'a', target: 'b'}
-                }
-            ],
+            elements,
 
             style: [ // the stylesheet for the graph
                 {
@@ -53,7 +81,15 @@ const App = () => {
             }
 
         })
-    }, []);
+
+        cy.current = test
+
+
+        return () => {
+            cy.current = null
+        }
+
+    }, [data]);
 
 
     return (
@@ -63,21 +99,23 @@ const App = () => {
             <div
                 className={styles.sidebar}
             >
-                <Layout />
-                <PaneProperties />
-                <NodeProperties />
-                <EdgeProperties />
-                <Export />
+                <Layout/>
+                <Data/>
+                <PaneProperties cy={cy}/>
+                <NodeProperties/>
+                <EdgeProperties/>
+                <Export cy={cy}/>
 
             </div>
 
             <div
                 id={'cy'}
+                style={{
+                    backgroundColor: `${backgroundColor}`
+                }}
                 className={styles.graphContainer}
             >
-
             </div>
-
 
 
         </div>

@@ -1,7 +1,16 @@
+import {useState} from "react";
 import styles from "../style/App.module.scss";
-import {Button, Select} from "@mui/material";
+import Select, {SelectChangeEvent} from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
 
 const Layout = () => {
+
+
+    const [layout, setLayout] = useState('random');
+
+    const handleChange = (e) => {
+        setLayout(e.target.value);
+    };
 
     return (
         <div
@@ -21,9 +30,13 @@ const Layout = () => {
                 <Select
                     size={'small'}
                     fullWidth
-                    options={["random", "dagre", "grid"]}
-                    onChange={() => {}}
-                />
+                    value={layout}
+                    onChange={handleChange}
+                >
+                    <MenuItem value={'random'}>random</MenuItem>
+                    <MenuItem value={'dagre'}>dagre</MenuItem>
+                    <MenuItem value={'grid'}>grid</MenuItem>
+                </Select>
 
 
             </div>
