@@ -81,7 +81,7 @@ const App = () => {
                         'background-color': nodeColor,
                         'width' : nodeSize,
                         'height': nodeSize,
-                        'label': 'data(id)'
+                        // 'label': 'data(id)'
                     }
                 },
 

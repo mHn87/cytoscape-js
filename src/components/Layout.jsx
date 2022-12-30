@@ -1,9 +1,8 @@
-import {useState} from "react";
 import styles from "../style/App.module.scss";
-import Select, {SelectChangeEvent} from "@mui/material/Select";
+import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import {useDispatch, useSelector} from "react-redux";
-import {changeLayout, setData} from "../store/slices/paneSlice";
+import {changeLayout,} from "../store/slices/paneSlice";
 
 const Layout = () => {
 
@@ -38,10 +37,12 @@ const Layout = () => {
                     value={layout}
                     onChange={handleChangeLayout}
                 >
+
                     <MenuItem value={'random'}>random</MenuItem>
                     <MenuItem value={'dagre'}>dagre</MenuItem>
                     <MenuItem value={'grid'}>grid</MenuItem>
                     <MenuItem value={'concentric'}>concentric</MenuItem>
+
                 </Select>
 
 

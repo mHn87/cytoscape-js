@@ -25,7 +25,6 @@ const NodeProperties = ({cy}) => {
                 background-color: ${e.target.value};
                 width : ${nodeSize};
                 height: ${nodeSize};
-                label: data(id);
             }
             
             edge {
@@ -46,7 +45,6 @@ const NodeProperties = ({cy}) => {
                 background-color: ${nodeColor};
                 width : ${count};
                 height: ${count};
-                label: data(id);
             }
             
             edge {
